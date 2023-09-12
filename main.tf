@@ -27,14 +27,14 @@ resource "azurecaf_name" "self" {
 }
 
 resource "azurerm_private_endpoint" "this" {
-  name                = azurecaf_name.self.result
+  name                = local.resource_name
   resource_group_name = data.azurerm_resource_group.parent_group.name
   location            = local.location
   subnet_id           = var.subnet_id
   tags                = local.tags
 
   private_service_connection {
-    name                           = "${azurecaf_name.self.result}-privateserviceconnection"
+    name                           = "${local.resource_name}-privateserviceconnection"
     private_connection_resource_id = var.resource_id
     is_manual_connection           = false
     subresource_names              = var.subresource_names
