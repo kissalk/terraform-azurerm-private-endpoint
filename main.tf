@@ -10,6 +10,8 @@ locals {
 
   splitted_name        = split("/", var.resource_id)
   linked_resource_name = element(local.splitted_name, length(local.splitted_name) - 1)
+
+  private_dns_zone_group = var.private_dns_zone_group != null ? var.private_dns_zone_group : []
 }
 
 data "azurerm_resource_group" "parent_group" {
@@ -41,7 +43,7 @@ resource "azurerm_private_endpoint" "this" {
   }
 
   dynamic "private_dns_zone_group" {
-    for_each = var.private_dns_zone_group
+    for_each = local.private_dns_zone_group
     content {
       name                 = private_dns_zone_group.value["name"]
       private_dns_zone_ids = private_dns_zone_group.value["ids"]
