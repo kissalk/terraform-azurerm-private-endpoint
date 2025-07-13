@@ -58,3 +58,14 @@ variable "private_dns_zone_group" {
   default     = null
   description = "The private DNS zone groupe. Example {name = \"default\", ids = [\"azurerm_private_dns_zone.private_dns_zones.id\"]}"
 }
+
+variable "ip_configuration" {
+  type = object({
+    name               = string
+    private_ip_address = string
+    subresource_name   = string
+    member_name        = string
+  })
+  default = {}
+  description = "This allows a static IP address to be set for this Private Endpoint, otherwise an address is dynamically allocated from the Subnet."
+}
