@@ -50,7 +50,7 @@ module "aware_private_endpoint" {
 It adds the option to specify a private DNS Zone. When set, Azure will take care of the registration of the record.
 
 <!-- BEGIN_TF_DOCS -->
-#### Requirements
+## Requirements
 
 | Name | Version |
 |------|---------|
@@ -58,22 +58,42 @@ It adds the option to specify a private DNS Zone. When set, Azure will take care
 | <a name="requirement_azurecaf"></a> [azurecaf](#requirement\_azurecaf) | >= 1.2.16 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >=3.0.2 |
 
-#### Inputs
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_azurecaf"></a> [azurecaf](#provider\_azurecaf) | >= 1.2.16 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >=3.0.2 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [azurecaf_name.self](https://registry.terraform.io/providers/aztfmod/azurecaf/latest/docs/resources/name) | resource |
+| [azurerm_private_endpoint.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_endpoint) | resource |
+| [azurerm_resource_group.parent_group](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) | data source |
+
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | Specifies the Name of the Resource Group within which the Private Endpoint should exist. Changing this forces a new resource to be created. | `string` | n/a | yes |
-| <a name="input_resource_id"></a> [resource\_id](#input\_resource\_id) | The ID of the Private Link Enabled Remote Resource which this Private Endpoint should be connected to. | `string` | n/a | yes |
-| <a name="input_subnet_id"></a> [subnet\_id](#input\_subnet\_id) | The ID of the Subnet from which Private IP Addresses will be allocated for this Private Endpoint. Changing this forces a new resource to be created. | `string` | n/a | yes |
-| <a name="input_subresource_names"></a> [subresource\_names](#input\_subresource\_names) | A list of subresource names which the Private Endpoint is able to connect to. subresource\_names corresponds to group\_id. Changing this forces a new resource to be created. | `list(string)` | n/a | yes |
 | <a name="input_caf_prefixes"></a> [caf\_prefixes](#input\_caf\_prefixes) | Prefixes to use for caf naming. | `list(string)` | `[]` | no |
 | <a name="input_custom_location"></a> [custom\_location](#input\_custom\_location) | Specifies a custom location for the resource. | `string` | `""` | no |
 | <a name="input_custom_name"></a> [custom\_name](#input\_custom\_name) | Specifies a custom name for the resource. | `string` | `""` | no |
 | <a name="input_custom_tags"></a> [custom\_tags](#input\_custom\_tags) | The custom tags to add on the resource. | `map(string)` | `{}` | no |
 | <a name="input_description"></a> [description](#input\_description) | Resource description. | `string` | `""` | no |
-| <a name="input_private_dns_zone_group"></a> [private\_dns\_zone\_group](#input\_private\_dns\_zone\_group) | The private DNS zone groupe. Example {name = "default", ids = ["azurerm\_private\_dns\_zone.private\_dns\_zones.id"]} | <pre>list(<br>    object({<br>      name = string<br>      ids  = list(string)<br>    })<br>  )</pre> | `null` | no |
+| <a name="input_ip_configuration"></a> [ip\_configuration](#input\_ip\_configuration) | This allows a static IP address to be set for this Private Endpoint, otherwise an address is dynamically allocated from the Subnet. | <pre>object({<br/>    name               = string<br/>    private_ip_address = string<br/>    subresource_name   = string<br/>    member_name        = string<br/>  })</pre> | `{}` | no |
+| <a name="input_private_dns_zone_group"></a> [private\_dns\_zone\_group](#input\_private\_dns\_zone\_group) | The private DNS zone groupe. Example {name = "default", ids = ["azurerm\_private\_dns\_zone.private\_dns\_zones.id"]} | <pre>list(<br/>    object({<br/>      name = string<br/>      ids  = list(string)<br/>    })<br/>  )</pre> | `null` | no |
+| <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | Specifies the Name of the Resource Group within which the Private Endpoint should exist. Changing this forces a new resource to be created. | `string` | n/a | yes |
+| <a name="input_resource_id"></a> [resource\_id](#input\_resource\_id) | The ID of the Private Link Enabled Remote Resource which this Private Endpoint should be connected to. | `string` | n/a | yes |
+| <a name="input_subnet_id"></a> [subnet\_id](#input\_subnet\_id) | The ID of the Subnet from which Private IP Addresses will be allocated for this Private Endpoint. Changing this forces a new resource to be created. | `string` | n/a | yes |
+| <a name="input_subresource_names"></a> [subresource\_names](#input\_subresource\_names) | A list of subresource names which the Private Endpoint is able to connect to. subresource\_names corresponds to group\_id. Changing this forces a new resource to be created. | `list(string)` | n/a | yes |
 
-#### Outputs
+## Outputs
 
 | Name | Description |
 |------|-------------|
