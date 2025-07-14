@@ -63,8 +63,8 @@ variable "ip_configuration" {
   type = object({
     name               = string
     private_ip_address = string
-    subresource_name   = string
-    member_name        = string
+    subresource_name   = optional(string)
+    member_name        = optional(string)
   })
   default = null
   description = "This allows a static IP address to be set for this Private Endpoint, otherwise an address is dynamically allocated from the Subnet."
