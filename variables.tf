@@ -61,8 +61,8 @@ variable "private_dns_zone_group" {
 
 variable "ip_configuration" {
   type = object({
-    name               = string
-    private_ip_address = string
+    name               = optional(string)
+    private_ip_address = optional(string)
     subresource_name   = optional(string)
     member_name        = optional(string)
   })
