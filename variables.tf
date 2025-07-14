@@ -60,12 +60,12 @@ variable "private_dns_zone_group" {
 }
 
 variable "ip_configuration" {
-  type = object({
+  type = optional(object({
     name               = string
     private_ip_address = string
     subresource_name   = string
     member_name        = string
-  })
+  }))
   default = {}
   description = "This allows a static IP address to be set for this Private Endpoint, otherwise an address is dynamically allocated from the Subnet."
 }
